@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculer Moyenne et Score BAC</title>
+    <script src="https://kit.fontawesome.com/3dc57f6ae5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/pagesstyle.css">
+</head>
+<body>
+    <header>
+        <h1>Bac <span id="auto-input"></span><br></h1>
+    </header>
+    <section class="main">
+        <div class="container">
+        <div class="results">
+            <div class="moy"><p>Moyenne : </p><span id="sp_moy">_</span></div>
+            <div class="score"><p>Score : </p><span id="sp_scr">_</span></div>
+            <div class="score-7-per"><p>Score avec 7% : </p><span id="sp_scr7">_</span></div>
+        </div>
+        <div class="data">
+            <div class="input_form">
+                <input type="number" name="" id="math" required autofocus step="any" min="0" max="20" oninput="validity.valid||(value='');" >
+                <span>Math</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="phy" required step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>Physique</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="sti" required step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>STI</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="algo" required step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>Algo</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="fr" required step="any" min="0" max="20" oninput="validity.valid||(value='');"> 
+                <span>Français</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="ar" required step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>Arabe</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="an" required step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>Anglais</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="philo" required step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>Philo</span>
+            </div>
+            <div class="input_form" id="sport_zone">
+                <input type="number" name="" required id="sport" step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>Sport</span>
+            </div>
+            <div class="input_form">
+                <input type="number" name="" id="opt" required step="any" min="0" max="20" oninput="validity.valid||(value='');">
+                <span>Option</span>
+            </div>
+        </div>
+        <div class="dispense">
+            <div class="logo"><i class="fa-solid fa-person-running"></i></div>
+            <p>dispensée sport : </p> 
+            <div class="check">
+                <input type="checkbox" name="" class="check-btn" id="disp_btn">
+                <div class="MyCheck">
+                    <div class="line"></div>
+                    <div class="cercle"></div>
+                </div>
+            </div>   
+        </div>
+        <div class="calc_btn">
+            <button type="button" onclick="calcul()">Calculer</button>
+        </div>
+    </div>
+    </section>
+    <footer><p><span>M</span>oyenny | All rights reserved<p></p></footer>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+    var typed = new Typed('#auto-input', {
+        strings: ['Informatique'],
+        typeSpeed: 100,
+        backSpeed:100,
+        loop:true 
+      });
+    </script>
+    <script>
+        function calcul(){
+        let math = parseFloat(document.getElementById("math").value),
+                phy = parseFloat(document.getElementById("phy").value),
+                sti = parseFloat(document.getElementById("sti").value),
+                algo = parseFloat(document.getElementById("algo").value),
+                fr = parseFloat(document.getElementById("fr").value),
+                ar = parseFloat(document.getElementById("ar").value),
+                an = parseFloat(document.getElementById("an").value),
+                philo = parseFloat(document.getElementById("philo").value),
+                opt = parseFloat(document.getElementById("opt").value),
+                sport = parseFloat(document.getElementById("sport").value),
+                dispense = document.getElementById("disp_btn");
+            if (opt > 10)
+                opt = eval((opt - 10))
+            else
+                opt = 0
+
+            if (dispense.checked) {
+                sport = 10;
+            }
+            //Calculer la moyenne de session principale
+            let som = eval((3*math)+(2*phy)+(sti*3)+(algo*3)+fr+ar+an+philo+opt+sport),
+                coef_som = 16,
+                moy = (som/coef_som)
+                document.getElementById("sp_moy").innerHTML=moy.toFixed(2);
+            //Calculer le score 
+            let fb = moy*4,
+            fs = eval((1.5*math)+(0.5*phy)+(0.5*sti)+(algo*1.5)+an+fr),
+            fg = eval(fb+fs),
+            scr7 = eval(fg+((fg*7)/100)); 
+            document.getElementById("sp_scr").innerHTML=fg.toFixed(2);
+            document.getElementById("sp_scr7").innerHTML=scr7.toFixed(2);}
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
