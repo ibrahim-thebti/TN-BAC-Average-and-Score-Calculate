@@ -23,7 +23,7 @@ section{
     background: rgb(9, 9, 9);
 }   
 section.main{
-    background: url("../Imgs/bg_img.jpg");
+    background: url("../imgs/bg_img.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
